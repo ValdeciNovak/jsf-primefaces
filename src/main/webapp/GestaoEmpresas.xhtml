@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta charset="UTF-8" />
 	<title>Gestão Empresas</title>
@@ -15,49 +16,99 @@
 	<div id="conteudo">
 		<h:form>
 			<h:panelGrid columns="2">
-				<h:outputLabel value="Razão Social: " for="razaoSocial" />
-				<h:inputText id="razaoSocial" />
+				<p:outputLabel value="Razão Social: " for="razaoSocial" />
 
-				<h:outputLabel value="Nome Fantasia: " for="nomeFantasia" />
-				<h:inputText id="nomeFantasia" />
+				<h:panelGroup>
+					<p:inputText id="razaoSocial"
+						value="#{gestaoEmpresasBean.empresa.razaoSocial}" required="true"
+						label="Razão Social" />
+					<p:message for="razaoSocial" />
 
-				<h:outputLabel value="Tipo Empresa" for="tipo" />
+				</h:panelGroup>
+				<p:outputLabel value="Nome Fantasia: " for="nomeFantasia" />
+				<p:inputText id="nomeFantasia"
+					value="#{gestaoEmpresasBean.empresa.nomeFantasia}" />
 
-				<h:selectOneMenu id="tipo" value="#{empresaBean.empresa.tipo}">
-					<f:selectItem itemLabel="Selecione..." itemValue="#{null}" />
-					<f:selectItems value="#{empresaBean.tiposEmpresa}" var="t"
-						itemValue="#{t}" itemLabel="#{t.descricao}" />
-				</h:selectOneMenu>
+				<p:outputLabel value="Tipo Empresa" for="tipo" />
+
+				<h:panelGroup>
+					<p:selectOneMenu id="tipo"
+						value="#{gestaoEmpresasBean.empresa.tipo}" required="true"
+						label="Tipo">
+						<f:selectItem itemLabel="Selecione..." />
+
+						<f:selectItems value="#{gestaoEmpresasBean.tiposEmpresa}"
+							var="tipoEmpresa" itemLabel="#{tipoEmpresa.descricao}"
+							itemValue="#{tipoEmpresa}" />
+					</p:selectOneMenu>
+					<p:message for="tipo" />
+
+				</h:panelGroup>
+
+				<p:outputLabel value="CNPJ: " for="cnpj" />
+
+				<h:panelGroup>
+					<p:inputText id="cnpj" value="#{gestaoEmpresasBean.empresa.cnpj}"
+						label="CNPJ">
+						<f:validateLength minimum="18" maximum="18" />
+					</p:inputText>
+
+					<p:message for="cnpj" />
+
+				</h:panelGroup>
+
+
+				<p:outputLabel value="Data fundação: " for="dataFundacao" />
+
+				<h:panelGroup>
+					<p:inputText id="dataFundacao"
+						value="#{gestaoEmpresasBean.empresa.dataFundacao}"
+						label="Data fundação">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:inputText>
+
+					<p:message for="dataFundacao" />
+
+				</h:panelGroup>
+
+
+				<p:outputLabel value="Faturamento: " for="faturamento" />
+				<h:panelGroup>
+					<p:inputText id="faturamento"
+						value="#{gestaoEmpresasBean.empresa.faturamento}"
+						label="Faturamento">
+
+						<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+						<f:validateDoubleRange minimum="0" />
+					</p:inputText>
+
+					<p:message for="faturamento" />
+				</h:panelGroup>
 
 				<h:outputLabel />
-				<h:commandButton value="Salvar" />
+				<p:commandButton value="Salvar"
+					actionListener="#{gestaoEmpresasBean.salvar}" update="@form" />
 
+
+				<h:outputLabel />
+				<p:commandLink value="Ajuda?" action="#{gestaoEmpresasBean.ajuda}" />
 			</h:panelGrid>
 
-			<h:dataTable value="#{[0,0,0,0]}">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Razão social" />
-					</f:facet>
-					<h:outputText value="Softwares, Treinamentos LTDA" />
-				</h:column>
+			<p:dataTable value="#{[0,0,0,0]}">
+				<p:column headerText="Razão Social">
 
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Nome Fantasia" />
-					</f:facet>
 					<h:outputText value="Softwares, Treinamentos LTDA" />
-				</h:column>
+				</p:column>
 
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Tipo Empresa" />
-					</f:facet>
+				<p:column headerText="Nome Fantasia">
+					<h:outputText value="Softwares, Treinamentos LTDA" />
+				</p:column>
+
+				<p:column headerText="Tipo Empresa">
 					<h:outputText value="LTDA" />
-				</h:column>
-			</h:dataTable>
+				</p:column>
+			</p:dataTable>
 		</h:form>
-
 	</div>
 
 	<footer> JSF / PrimeFaces </footer>
