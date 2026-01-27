@@ -1,12 +1,14 @@
 package com.valdeci.erp.controller;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.valdeci.erp.model.Empresa;
-import com.valdeci.erp.model.TipoEmpresa;
+import com.valdeci.erp.repository.Empresas;
 
 @Named
 @ViewScoped
@@ -14,23 +16,18 @@ public class GestaoEmpresasBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Empresa empresa = new Empresa();
-
-	public void salvar() {
-		System.out.println("Razao social: " + empresa.getRazaoSocial() + " - Nome fantasia: "
-				+ empresa.getNomeFantasia() + " - Tipo: " + empresa.getTipo());
+	private List<Empresa> listaEmpresas;
+	
+	@Inject
+	private Empresas empresas;
+	
+	public void todasEmpresas() {
+		listaEmpresas = empresas.todas();
 	}
-
-	public String ajuda() {
-		return "AjudaGestaoEmpresas?faces-redirect=true";
+	
+	public List<Empresa> getListaEmpresas() {
+		return listaEmpresas;
 	}
-
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-
-	public TipoEmpresa[] getTiposEmpresa() {
-		return TipoEmpresa.values();
-	}
-
+	
+	
 }
