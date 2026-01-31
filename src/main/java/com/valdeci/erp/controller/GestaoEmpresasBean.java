@@ -8,7 +8,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.valdeci.erp.model.Empresa;
+import com.valdeci.erp.model.TipoEmpresa;
 import com.valdeci.erp.repository.Empresas;
+import com.valdeci.erp.util.FacesMessages;
 
 @Named
 @ViewScoped
@@ -17,17 +19,42 @@ public class GestaoEmpresasBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private List<Empresa> listaEmpresas;
-	
+
+	private String termoPesquisa;
+
+	@Inject
+	private FacesMessages messages;
+
+	public void pesquisar() {
+
+		listaEmpresas = empresas.pesquisar(termoPesquisa);
+
+		if (listaEmpresas.isEmpty()) {
+			messages.info("Sua consulta não retornou registros.");
+		}
+	}
+
 	@Inject
 	private Empresas empresas;
-	
+
 	public void todasEmpresas() {
 		listaEmpresas = empresas.todas();
 	}
-	
+
 	public List<Empresa> getListaEmpresas() {
 		return listaEmpresas;
 	}
-	
-	
+
+	public String getTermoPesquisa() {
+		return termoPesquisa;
+	}
+
+	public void setTermoPesquisa(String termoPesquisa) {
+		this.termoPesquisa = termoPesquisa;
+	}
+
+	public TipoEmpresa[] getTiposEmpresa() {
+		return TipoEmpresa.values();
+	}
+
 }
