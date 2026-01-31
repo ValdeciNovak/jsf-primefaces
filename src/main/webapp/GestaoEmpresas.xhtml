@@ -104,7 +104,11 @@
 
 					<p:outputLabel value="Ramo atividade: " for="ramoAtividade" />
 
-					<p:autoComplete id="ramoAtividade" size="80" />
+					<p:autoComplete id="ramoAtividade" size="80"
+						completeMethod="#{gestaoEmpresasBean.completarRamoAtividade}"
+						converter="#{gestaoEmpresasBean.ramoAtividadesConverter}"
+						var="ramoAtividade" itemLabel="#{ramoAtividade.descricao}"
+						itemValue="#{ramoAtividade}" />
 
 					<p:outputLabel />
 					<p:commandButton value="Salvar" />

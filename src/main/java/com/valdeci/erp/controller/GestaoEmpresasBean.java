@@ -3,13 +3,16 @@ package com.valdeci.erp.controller;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.faces.convert.Converter;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.valdeci.erp.model.Empresa;
+import com.valdeci.erp.model.RamoAtividade;
 import com.valdeci.erp.model.TipoEmpresa;
 import com.valdeci.erp.repository.Empresas;
+import com.valdeci.erp.repository.RamoAtividades;
 import com.valdeci.erp.util.FacesMessages;
 
 @Named
@@ -22,8 +25,13 @@ public class GestaoEmpresasBean implements Serializable {
 
 	private String termoPesquisa;
 
+	private Converter ramoAtividadesConverter;
+
 	@Inject
 	private FacesMessages messages;
+
+	@Inject
+	private RamoAtividades ramoAtividades;
 
 	public void pesquisar() {
 
@@ -41,6 +49,14 @@ public class GestaoEmpresasBean implements Serializable {
 		listaEmpresas = empresas.todas();
 	}
 
+	public List<RamoAtividade> completarRamoAtividade(String termo) {
+		List<RamoAtividade> listaRamoAtividades = ramoAtividades.pesquisar(termo);
+
+		ramoAtividadesConverter = new RamoAtividadeConverter(listaRamoAtividades);
+
+		return listaRamoAtividades;
+	}
+
 	public List<Empresa> getListaEmpresas() {
 		return listaEmpresas;
 	}
@@ -55,6 +71,10 @@ public class GestaoEmpresasBean implements Serializable {
 
 	public TipoEmpresa[] getTiposEmpresa() {
 		return TipoEmpresa.values();
+	}
+	
+	public Converter getRamoAtividadesConverter() {
+		return ramoAtividadesConverter;
 	}
 
 }
