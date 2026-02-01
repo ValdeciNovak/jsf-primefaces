@@ -35,7 +35,6 @@ public class RamoAtividadeConverter implements Converter {
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-
 		if (value == null) {
 			return null;
 		}
@@ -44,5 +43,4 @@ public class RamoAtividadeConverter implements Converter {
 
 		return ramoAtividade.getId().toString();
 	}
-
 }
