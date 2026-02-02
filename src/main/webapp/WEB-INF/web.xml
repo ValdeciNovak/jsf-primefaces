@@ -32,10 +32,10 @@
 
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
-		<param-value>arya-blue</param-value>
+		<param-value>arya</param-value>
 	</context-param>
-	
-	
+
+
 
 	<resource-env-ref>
 		<resource-env-ref-name>BeanManager</resource-env-ref-name>
@@ -45,6 +45,11 @@
 	<listener>
 		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
 	</listener>
+
+	<context-param>
+		<param-name>javax.faces.ENABLE_CDI_RESOLVER_CHAIN</param-name>
+		<param-value>true</param-value>
+	</context-param>
 
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
