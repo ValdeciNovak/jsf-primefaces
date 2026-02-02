@@ -54,8 +54,12 @@
 						update="empresaDialog" process="@this" />
 
 					<p:commandButton title="Excluir" icon="fa fa-trash"
-						disabled="#{not gestaoEmpresasBean.empresaSelecionada}">
+						disabled="#{not gestaoEmpresasBean.empresaSelecionada}"
+						actionListener="#{gestaoEmpresasBean.excluir}"
+						update="messages empresasDataTable toolbar" process="@this">
+
 						<p:resetInput target="empresaDialog" />
+
 					</p:commandButton>
 
 					<span class="ui-separator"> <span
