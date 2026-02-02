@@ -18,6 +18,7 @@
 
 		<h:form id="frm">
 
+
 			<p:messages id="messages" />
 
 			<p:toolbar id="toolbar">
@@ -58,7 +59,8 @@
 						actionListener="#{gestaoEmpresasBean.excluir}"
 						update="messages empresasDataTable toolbar" process="@this">
 
-						<p:resetInput target="empresaDialog" />
+						<p:confirm icon="ui-icon-alert" header="Confirmação de exclusão"
+							message="Deseja excluir a empresa?" />
 
 					</p:commandButton>
 
