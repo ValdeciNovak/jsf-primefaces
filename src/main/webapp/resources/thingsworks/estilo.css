@@ -10,7 +10,7 @@ body {
 header {
 	padding: 5px;
 	margin-bottom: 20px;
-	height: 30px;
+	height: 40px;
 	background-color: #545454;
 	color: #fff;
 	box-shadow: 0px 2px 2px #ccc
@@ -33,4 +33,32 @@ h1 {
 	padding: 0px;
 	margin: 0px;
 	margin-bottom: 10px
+}
+
+[id$="botaoPesquisar"] {
+    margin-left: 10px !important;
+}
+
+[id$="botaoExcluir"] {
+    margin-left: 5px !important;
+}
+
+/* Estilização do separador customizado */
+.separador-custom {
+    margin: 0 5px !important; /* Espaçamento lateral */
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.separador-custom .pi-ellipsis-v {
+    color: #888888 !important; /* Cor cinza */
+    font-size: 0.8rem !important; /* Reduz o tamanho do ícone (ajuste conforme desejar) */
+    opacity: 0.7; /* Deixa um pouco mais suave */
+}
+
+/* Remove bordas ou fundos residuais de versões antigas */
+.separador-custom.ui-separator {
+    background: none !important;
+    border: none !important;
+    width: auto !important;
 }
