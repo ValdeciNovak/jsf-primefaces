@@ -118,12 +118,6 @@ mvn clean package
 - Componentes de interface com PrimeFaces
 - Padrões de repositório e serviço
 
-## Próximos passos / Melhorias
-
-- Adicionar autenticação/autorização (ex.: JAAS ou Spring Security)
-- Implementar testes automatizados (unitários e de integração)
-- Externalizar configurações sensíveis (usar variáveis de ambiente ou um arquivo externo para credenciais)
-- Refatorar camadas para melhorar testability
 
 **Autor**
 
